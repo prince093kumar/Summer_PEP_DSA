@@ -8,29 +8,56 @@ class Solution {
         // return path(m-1,n-1,m,n,dp);
 
          // using dp without recursion tc optimization
-         int u,l;
-        int[][] dp=new int[m][n];
+        //  int u,l;
+        // int[][] dp=new int[m][n];
+        // for(int i=0;i<m;i++){
+        //     for(int j=0;j<n;j++){
+        //         if(i==0 && j==0){
+        //             dp[i][j]=1;
+        //         }
+        //         else{
+        //             u=0;
+        //             l=0;
+        //             if(i>0 ){
+        //               u=dp[i-1][j];
+        //             }
+                  
+        //             if(j>0){
+        //                 l=dp[i][j-1];
+        //             }
+        //             dp[i][j]=u+l;
+                
+        //         }
+        //     }
+        // }
+        // return dp[m-1][n-1];
+
+        // using dp with two 1-D array
+
+  
+        int[] prev=new int[n];
+        
         for(int i=0;i<m;i++){
+            int[] curr=new int[n];
             for(int j=0;j<n;j++){
                 if(i==0 && j==0){
-                    dp[i][j]=1;
+                    curr[j]=1;
                 }
                 else{
-                    u=0;
-                    l=0;
-                    if(i>0 ){
-                      u=dp[i-1][j];
+                    int up=0;
+                    int left=0;
+                    if(i>0){
+                        up=prev[j];
                     }
-                  
                     if(j>0){
-                        l=dp[i][j-1];
+                        left=curr[j-1];
                     }
-                    dp[i][j]=u+l;
-                
+                    curr[j]=up+left;
                 }
             }
+            prev=curr;
         }
-        return dp[m-1][n-1];
+        return prev[n-1];
 
     }
 
