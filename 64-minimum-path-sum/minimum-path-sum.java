@@ -2,10 +2,10 @@ class Solution {
     public int minPathSum(int[][] grid) {
        int i=grid.length;
        int j=grid[0].length;
-       int[][] dp=new int[i][j];
-       for(int m=0;m<i;m++){
-        Arrays.fill(dp[m],-1);
-       }
+    //    int[][] dp=new int[i][j];
+    //    for(int m=0;m<i;m++){
+    //     Arrays.fill(dp[m],-1);
+    //    }
     //    return minPath(grid,dp,i-1,j-1);
     // dp without recursion
     //  return minPath(grid,dp,i,j);
