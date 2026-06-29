@@ -13,8 +13,11 @@ class Solution {
         // return lcs(text1,text2,i,j,dp);
 
         // using dp 
-        int[][] dp=new int[m][n];
-        return lcs(text1,text2,m,n,dp);
+        // int[][] dp=new int[m][n];
+        // return lcs(text1,text2,m,n,dp);
+
+        // using dp with space optimization
+        return lcs(text1,text2,m,n);
     }
 
     // using dp with recursion 
@@ -36,31 +39,64 @@ class Solution {
     // }
 
     // using dp without recursion 
-    public int lcs(String s,String t,int m,int n,int[][] dp){
+    // public int lcs(String s,String t,int m,int n,int[][] dp){
 
+    //     for(int i=0;i<m;i++){
+    //         for(int j=0;j<n;j++){
+                
+    //             if(s.charAt(i)==t.charAt(j)){
+    //                 int a=0;
+    //                 if(i>0 && j>0){
+    //                     a=dp[i-1][j-1];
+    //                 }
+    //                 dp[i][j]=1+a;
+    //             }
+    //             else{
+    //                 int b=0;
+    //                 int c=0;
+    //                 if(i>0){
+    //                     b=dp[i-1][j];
+    //                 }
+    //                 if(j>0){
+    //                     c=dp[i][j-1];
+    //                 }
+    //                 dp[i][j]=0+Math.max(b,c);
+    //             }
+    //         }
+    //     }
+    //     return dp[m-1][n-1];
+    // }
+
+
+    // using dp with space optimization
+    public int lcs(String s,String t,int m,int n){
+        int[] prev=new int[n];
+        
         for(int i=0;i<m;i++){
+            int[] curr=new int[n];
             for(int j=0;j<n;j++){
                 
                 if(s.charAt(i)==t.charAt(j)){
                     int a=0;
                     if(i>0 && j>0){
-                        a=dp[i-1][j-1];
+                        a=prev[j-1];
                     }
-                    dp[i][j]=1+a;
+                    curr[j]=1+a;
                 }
                 else{
                     int b=0;
                     int c=0;
                     if(i>0){
-                        b=dp[i-1][j];
+                        b=prev[j];
                     }
                     if(j>0){
-                        c=dp[i][j-1];
+                        c=curr[j-1];
                     }
-                    dp[i][j]=0+Math.max(b,c);
+                    curr[j]=0+Math.max(b,c);
                 }
             }
+            prev=curr;
         }
-        return dp[m-1][n-1];
+        return prev[n-1];
     }
 }
