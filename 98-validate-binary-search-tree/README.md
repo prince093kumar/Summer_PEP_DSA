@@ -2,5 +2,5 @@
 
 Difficulty: Medium  
 Language: Java  
-Submitted: 2026-07-08T09:19:05.000Z  
+Submitted: 2026-07-08T10:02:45.000Z  
 LeetCode: https://leetcode.com/problems/validate-binary-search-tree/
