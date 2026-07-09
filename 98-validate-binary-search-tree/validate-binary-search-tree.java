@@ -32,23 +32,17 @@ class Solution {
     //     inOrder(root.right,res);
     // }
 
-    boolean ans=true;
-    TreeNode prev=null;
-    public boolean isValidBST(TreeNode root) {
-        
-        checkValid(root);
+  TreeNode prev=null;
+  boolean ans=true;
+   public boolean isValidBST(TreeNode root) {
+    if(root==null) return ans;
+    isValidBST(root.left);
+    if(prev!=null && prev.val>=root.val){
+        ans=false;
         return ans;
-
     }
-
-    public void checkValid(TreeNode root){
-        if(root==null) return ;
-        checkValid(root.left);
-        if(prev!=null && prev.val>=root.val){
-            ans=false;
-            return;
-        }
-        prev=root;
-        checkValid(root.right);
-    }
+    prev=root;
+    isValidBST(root.right);
+    return ans;
+   }
 }
